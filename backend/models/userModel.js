@@ -3,8 +3,7 @@ const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const cookie = require("cookie");
 
-// models
-
+// model
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -33,6 +32,8 @@ const userSchema = new mongoose.Schema({
     default: "",
   },
 });
+
+// ------------------------- Middleware functions ----------------------------- //
 
 userSchema.pre("save", async function (next) {
   // update
