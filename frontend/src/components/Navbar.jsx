@@ -8,17 +8,11 @@ const Navbar = () => {
       width={"100%"}
       p="10px"
       textAlign={"center"}
-      sx={{ BoxShadow: 3, mb: 2, bgcolor: "darkblue", color: "white" }}
+      sx={{ BoxShadow: 3, mb: 2, bgcolor: "#1e293b", color: "white" }}
     >
-      <Typography variant="h1" color={"white"} fontWeight="bold">
-        My-AI-App
+      <Typography variant="h4" color={"white"} fontWeight="bold" component={NavLink} to="/" sx={{ textDecoration: "none" }}>
+        My<span style={{ color: "#38bdf8" }}>AI</span>
       </Typography>
-      <NavLink to="/register" p={1}>
-        Sign Up
-      </NavLink>
-      <NavLink to="/login" p={1}>
-        Sign in
-      </NavLink>
     </Box>
   );
 };
