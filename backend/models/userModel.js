@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
-const cookie = require("cookie");
 
 // model
 const userSchema = new mongoose.Schema({
@@ -19,7 +18,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    minlengh: [8, "Password length must be greater than 8"],
+    minlength: [8, "Password length must be greater than 8"],
   },
 
   customerId: {
@@ -35,15 +34,14 @@ const userSchema = new mongoose.Schema({
 
 // ------------------------- Middleware functions ----------------------------- //
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   // update
   if (!this.isModified("password")) {
-    next();
+    return;
   }
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 // check password
@@ -53,7 +51,7 @@ userSchema.methods.matchPassword = async function (password) {
 
 // Sign Token
 userSchema.methods.getSignedToken = function (res) {
-  const accesToken = JWT.sign({ id: this._id }, process.env.JWT_key, {
+  const accessToken = JWT.sign({ id: this._id }, process.env.JWT_key, {
     expiresIn: process.env.JWT_ACCESS_EXPIREIN,
   });
   const refreshToken = JWT.sign(
@@ -61,12 +59,15 @@ userSchema.methods.getSignedToken = function (res) {
     process.env.JWT_REFRESH_TOKEN,
     { expiresIn: process.env.JWT_REFRESH_EXPRIREIN },
   );
-  res.cookie("refreshToken", `${refreshToken}`, {
+  res.cookie("refreshToken", refreshToken, {
     maxAge: 86400 * 7000,
     httpOnly: true,
+    secure: false,
+    sameSite: "lax",
   });
+  return accessToken;
 };
 
 const User = mongoose.model("User", userSchema);
 
-module.export = User;
+module.exports = User;

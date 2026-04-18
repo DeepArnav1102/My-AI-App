@@ -48,11 +48,11 @@ const loginUser = async (req, res, next) => {
       return next(new errorResponse("Please provide username and password"));
     }
     const user = await userModel.findOne({ username });
-    const isMatch = await userModel.matchPassword({ password });
     // Credential validation
     if (!user) {
       return next(new errorResponse("Invalid Credentials", 401));
     }
+    const isMatch = await user.matchPassword(password);
     if (!isMatch) {
       return next(new errorResponse("Invalid Credentials", 401));
     }

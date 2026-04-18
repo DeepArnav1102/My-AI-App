@@ -51,7 +51,7 @@ const Homepage = () => {
           fontSize: "1.1rem",
           "&:hover": {
             bgcolor: "#22b4f3",
-          },
+          }
         }}
       >
         Get Started
