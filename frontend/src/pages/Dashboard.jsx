@@ -4,6 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import AiBox from "../components/AiBox";
 
 const Dashboard = () => {
   const [username, setUsername] = useState("");
@@ -36,24 +37,27 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        p: 1,
-      }}
-    >
-      <Typography variant="h5" sx={{ ml: 5 }}>
-        Welcome {username}
-      </Typography>
-      <Button
-        onClick={handleLogout}
-        variant="outlined"
-        sx={{ mr: 5, color: "white" }}
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: 1,
+        }}
       >
-        Log Out
-      </Button>
+        <Typography variant="h5" sx={{ ml: 5 }}>
+          Welcome <span style={{ color: "#38bdf8" }}>{username}</span>
+        </Typography>
+        <Button
+          onClick={handleLogout}
+          variant="outlined"
+          sx={{ mr: 5, color: "white" }}
+        >
+          Log Out
+        </Button>
+      </Box>
+      <AiBox />
     </Box>
   );
 };
