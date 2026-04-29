@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PromptBox from "../components/PromptBox";
 
 const TextSummary = () => {
   const navigate = useNavigate();
@@ -13,11 +14,7 @@ const TextSummary = () => {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <h1>Text Summary</h1>
-    </div>
-  );
+  return <PromptBox title="Text Summary" placeholder="Enter the text" />;
 };
 
 export default TextSummary;

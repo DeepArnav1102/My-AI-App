@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PromptBox from "../components/PromptBox";
 
 const ParagraphWriting = () => {
   const navigate = useNavigate();
@@ -13,11 +14,7 @@ const ParagraphWriting = () => {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <h1>Paragraph Writing</h1>
-    </div>
-  );
+  return <PromptBox title="Paragraph Writing" placeholder= "Enter your Prompt" />;
 };
 
 export default ParagraphWriting;

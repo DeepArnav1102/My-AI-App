@@ -127,7 +127,7 @@ const AiBox = () => {
           </Typography>
         </Box>
         <Box
-          onClick={() => navigate("/text-summary")}
+          onClick={() => navigate("/gen-image")}
           sx={{
             bgcolor: "#0f172a",
             width: "15%",

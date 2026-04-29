@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PromptBox from "../components/PromptBox";
 
 const GenJScode = () => {
   const navigate = useNavigate();
@@ -13,11 +14,7 @@ const GenJScode = () => {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <h1>Generate JS Code</h1>
-    </div>
-  );
+  return <PromptBox title="Generate JS Code" placeholder="Enter your Prompt" />;
 };
 
 export default GenJScode;

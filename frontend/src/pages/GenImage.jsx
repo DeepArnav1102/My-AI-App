@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PromptBox from "../components/PromptBox";
 
 const GenImage = () => {
   const navigate = useNavigate();
@@ -13,11 +14,7 @@ const GenImage = () => {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <h1>Generate Image</h1>
-    </div>
-  );
+  return <PromptBox title="Generate Image" placeholder="Describe your Image" />;
 };
 
 export default GenImage;
