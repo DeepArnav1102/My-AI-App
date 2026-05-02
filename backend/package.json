@@ -10,6 +10,7 @@
   "author": "Arnav Deep",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "colors": "^1.4.0",
