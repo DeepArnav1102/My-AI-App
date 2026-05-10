@@ -2,7 +2,7 @@ import { Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const PromptBox = ({ title, placeholder, setOutput }) => {
+const PromptBox = ({ title, placeholder, setOutput, button, url }) => {
   const navigate = useNavigate();
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ const PromptBox = ({ title, placeholder, setOutput }) => {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:8080/api/v1/ai/text-summary", {
+      const res = await fetch(`http://localhost:8080/api/v1/ai/${url}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,10 +80,14 @@ const PromptBox = ({ title, placeholder, setOutput }) => {
         />
       </Box>
 
-      {/* Button */}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-        <Button variant="contained" onClick={handleSubmit} disabled={loading}>
-          {loading ? "Generating..." : "Generate Summary"}
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          sx={{ bgcolor: "#22b4f3", color: "black" }}
+          disabled={loading}
+        >
+          {loading ? "Generating..." : `Generate ${button}`}
         </Button>
       </Box>
     </Box>

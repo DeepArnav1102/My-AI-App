@@ -22,6 +22,8 @@ const TextSummary = () => {
         title="Text Summary"
         placeholder="Enter the text"
         setOutput={setOutput}
+        button="Summary"
+        url = "text-summary"
       />
       <OutputBox output={output} />
     </Box>
